@@ -11,7 +11,9 @@
     <string name="mdp">Mot de passe</string>
 
     <string name="title_activity_form">Formulaire</string>
-    <string name="title_activity_connexion">ConnexionActivity</string>
+    <string name="title_activity_connexion">Connected</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello world!  vous etés connecté</string>
+
+    <string name="clear">Supprimer votre compte</string>
 </resources>

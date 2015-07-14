@@ -16,37 +16,19 @@
 
         <TextView
             android:id="@+id/ui_tx_nom"
-            android:text="@string/nom"
+            android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/ui_edit_nom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ui_tx_nom" />
-
-
-        <TextView
-            android:id="@+id/ui_tx_mdp"
-            android:text="@string/mdp"
-            android:layout_below="@id/ui_edit_nom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/ui_edit_mdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:layout_below="@id/ui_tx_mdp" />
 
         <Button
-            android:id="@+id/ui_btn_valide"
-            android:text="@string/send"
+            android:id="@+id/ui_btn_clear"
+            android:text="@string/clear"
+            android:layout_below="@id/ui_tx_nom"
             android:layout_width="wrap_content"
-            android:layout_below="@id/ui_edit_mdp"
             android:layout_height="wrap_content" />
+
+
 
     </RelativeLayout>
 

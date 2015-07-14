@@ -1,6 +1,7 @@
 package com.myschool.tp2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,7 +13,10 @@ import android.widget.Button;
 public class HomeActivity extends ActionBarActivity {
 
     private Button ui_btn_create=null;
+    private final static String CURRENT_LOGIN = "CURRENT_LOGIN";
     private Button ui_btn_have=null;
+    private String mName="";
+    private String mMail="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,11 @@ public class HomeActivity extends ActionBarActivity {
 
         ui_btn_create= (Button)findViewById(R.id.ui_btn_create);
         ui_btn_have= (Button)findViewById(R.id.ui_btn_have);
+
+
+        initWithSharedPreferences();
+
+
 
         ui_btn_create.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,10 +49,6 @@ public class HomeActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
 
     }
 
@@ -68,4 +73,28 @@ public class HomeActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void initWithSharedPreferences() {
+        SharedPreferences userCurrentLogin = getSharedPreferences(CURRENT_LOGIN, 0);
+
+        if (userCurrentLogin != null) {
+            String email = userCurrentLogin.getString("mail", null);
+            if (email != null) {
+                SharedPreferences userDatas = getSharedPreferences(email, 0);
+                mName = userDatas.getString("name", "--");
+                mMail = userDatas.getString("email", "");
+
+                if(!mName.equals("")||!mMail.equals("")){
+                    ui_btn_create.setVisibility(View.GONE);
+                }
+            }
+        }
+
+
+
+        // mUserName = "";
+
+    }
+
 }

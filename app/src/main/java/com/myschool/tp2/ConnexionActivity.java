@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,61 +14,27 @@ import android.widget.EditText;
 public class ConnexionActivity extends ActionBarActivity {
 
 
+    private Button ui_btn_clear=null;
+    private final static String CURRENT_LOGIN = "CURRENT_LOGIN";
 
-    private EditText ui_edit_nom = null;
-    private EditText ui_edit_mdp = null;
-    private Button ui_btn_valide = null;
-
-
-    private String name = "";
-    private String mdp = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
 
-        ui_edit_nom = (EditText) findViewById(R.id.ui_edit_nom);
-        ui_edit_mdp = (EditText) findViewById(R.id.ui_edit_mdp);
-        ui_btn_valide = (Button) findViewById(R.id.ui_btn_valide);
 
-
-        ui_edit_nom.addTextChangedListener(new TextWatcher() {
+        ui_btn_clear=(Button)findViewById(R.id.ui_btn_clear);
+        ui_btn_clear.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void onClick(View v) {
+                leaveTheApp();
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                name = s.toString();
             }
         });
-
-        ui_edit_mdp.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                mdp = s.toString();
-            }
-        });
-
-
-
-
+    }
+    private void leaveTheApp() {
+        getSharedPreferences(CURRENT_LOGIN, 0).edit().clear().commit();
+        finish();
     }
 
     @Override

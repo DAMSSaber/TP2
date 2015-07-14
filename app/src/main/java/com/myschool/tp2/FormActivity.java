@@ -17,6 +17,7 @@ import android.widget.Toast;
 public class FormActivity extends ActionBarActivity {
 
     SharedPreferences sharedpreferences =null;
+    private final static String CURRENT_LOGIN = "CURRENT_LOGIN";
     SharedPreferences.Editor editor=null;
     private EditText ui_edit_nom = null;
     private EditText ui_edit_mail = null;
@@ -24,18 +25,14 @@ public class FormActivity extends ActionBarActivity {
     private Button ui_btn_valide = null;
 
 
-    private String name = "";
-    private String mail = "";
-    private String mdp = "";
+    private String mName = "";
+    private String mMail = "";
+    private String mMdp = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-
-
-
-
 
 
         ui_edit_nom = (EditText) findViewById(R.id.ui_edit_nom);
@@ -57,7 +54,7 @@ public class FormActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                name = s.toString();
+                mName = s.toString();
             }
         });
         ui_edit_mail.addTextChangedListener(new TextWatcher() {
@@ -73,7 +70,7 @@ public class FormActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mail = s.toString();
+                mMail = s.toString();
             }
         });
         ui_edit_mdp.addTextChangedListener(new TextWatcher() {
@@ -89,7 +86,7 @@ public class FormActivity extends ActionBarActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                mdp = s.toString();
+                mMdp = s.toString();
             }
         });
 
@@ -98,26 +95,26 @@ public class FormActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                if (mdp.equals("")) {
+                if (mMdp.equals("")) {
 
                     Toast.makeText(getApplicationContext(), "Votre mot de passe est null",
                             Toast.LENGTH_LONG).show();
-                } else if (name.equals("")) {
+                } else if (mName.equals("")) {
 
                     Toast.makeText(getApplicationContext(), "Votre Idantifiant est null",
                             Toast.LENGTH_LONG).show();
-                } else if (mail.equals("")) {
+                } else if (mMail.equals("")) {
                     Toast.makeText(getApplicationContext(), "Votre email est null",
                             Toast.LENGTH_LONG).show();
                 }else{
 
-                    Toast.makeText(getApplicationContext(), "Oki",
+                    Toast.makeText(getApplicationContext(), "Ok",
                             Toast.LENGTH_LONG).show();
-                    sharedpreferences = getSharedPreferences(mail, Context.MODE_PRIVATE);
+                    sharedpreferences = getSharedPreferences(CURRENT_LOGIN, Context.MODE_PRIVATE);
                     editor= sharedpreferences.edit();
-                    editor.putString("mdp", mdp);
-                    editor.putString("name", name);
-                    editor.putString("mail", mail);
+                    editor.putString("mdp", mMdp);
+                    editor.putString("name", mName);
+                    editor.putString("mail", mMail);
                     editor.commit();
                 }
 
